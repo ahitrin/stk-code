@@ -2086,6 +2086,13 @@ void SkiddingAI::handleBraking(float max_turn_speed, float min_speed)
         return;
     }
 
+    // Zlohack: start
+    if (!RaceManager::get()->isFollowMode() && m_num_players_ahead == 0) {
+        m_controls->setBrake(true);
+        return;
+    }
+    // Zlohack: end
+
     // If the kart is not facing roughly in the direction of the track, brake
     // so that it is easier for the kart to turn in the right direction.
     if(m_current_track_direction==DriveNode::DIR_UNDEFINED &&
