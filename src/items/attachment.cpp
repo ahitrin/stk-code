@@ -275,6 +275,14 @@ void Attachment::hitBanana(ItemState *item_state)
         if (RaceManager::get()->isLinearRaceMode())
             PlayerManager::increaseAchievement(AchievementsStatus::BANANA_1RACE, 1);
     }
+    // Zlohack start: players do not get struck on bananas
+    if (m_kart->getController()->isPlayerController())
+    {
+        // Simply do nothing!
+        return;
+    }
+    // Zlohack end
+
     //Bubble gum shield effect:
     if(m_type == ATTACH_BUBBLEGUM_SHIELD ||
        m_type == ATTACH_NOLOK_BUBBLEGUM_SHIELD)
